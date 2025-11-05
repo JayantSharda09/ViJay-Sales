@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ViJay Sales - Smart Grocery Management System">
+    <meta name="keywords" content="grocery, management, system, inventory">
+    <meta name="author" content="ViJay Sales">
+    <title>ViJay Sales - Grocery Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>ViJay Sales</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" data-page="dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="#" data-page="customers" class="nav-link">Customers</a></li>
+                <li><a href="#" data-page="products" class="nav-link">Products</a></li>
+                <li><a href="#" data-page="suppliers" class="nav-link">Suppliers</a></li>
+                <li><a href="#" data-page="employees" class="nav-link">Employees</a></li>
+                <li><a href="#" data-page="invoices" class="nav-link">Invoices</a></li>
+                <li><a href="#" data-page="purchase-orders" class="nav-link">Purchase Orders</a></li>
+                <li><a href="#" data-page="order-details" class="nav-link">Order Details</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Page -->
+        <section id="dashboard" class="page active">
+            <div class="page-header">
+                <div class="header-content">
+                    <h2>Dashboard Overview</h2>
+                    <p>Welcome to ViJay Sales - Your comprehensive grocery management solution</p>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <h3>Customers</h3>
+                    <p class="stat-number" id="stat-customers">0</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <h3>Products</h3>
+                    <p class="stat-number" id="stat-products">0</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🚚</div>
+                    <h3>Suppliers</h3>
+                    <p class="stat-number" id="stat-suppliers">0</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👔</div>
+                    <h3>Employees</h3>
+                    <p class="stat-number" id="stat-employees">0</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🧾</div>
+                    <h3>Invoices</h3>
+                    <p class="stat-number" id="stat-invoices">0</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📋</div>
+                    <h3>Purchase Orders</h3>
+                    <p class="stat-number" id="stat-purchase-orders">0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customers Page -->
+        <section id="customers" class="page">
+            <div class="page-header">
+                <h2>Customers</h2>
+                <button class="btn btn-primary" onclick="openCustomerModal()">Add Customer</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Second Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customers-table-body">
+                        <tr>
+                            <td colspan="7" class="loading">Loading customers...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Products Page -->
+        <section id="products" class="page">
+            <div class="page-header">
+                <h2>Products</h2>
+                <button class="btn btn-primary" onclick="openProductModal()">Add Product</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Stock</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                        <tr>
+                            <td colspan="6" class="loading">Loading products...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Suppliers Page -->
+        <section id="suppliers" class="page">
+            <div class="page-header">
+                <h2>Suppliers</h2>
+                <button class="btn btn-primary" onclick="openSupplierModal()">Add Supplier</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="suppliers-table-body">
+                        <tr>
+                            <td colspan="6" class="loading">Loading suppliers...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Employees Page -->
+        <section id="employees" class="page">
+            <div class="page-header">
+                <h2>Employees</h2>
+                <button class="btn btn-primary" onclick="openEmployeeModal()">Add Employee</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employees-table-body">
+                        <tr>
+                            <td colspan="5" class="loading">Loading employees...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Invoices Page -->
+        <section id="invoices" class="page">
+            <div class="page-header">
+                <h2>Invoices</h2>
+                <button class="btn btn-primary" onclick="openInvoiceModal()">Add Invoice</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Payment Method</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invoices-table-body">
+                        <tr>
+                            <td colspan="5" class="loading">Loading invoices...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Purchase Orders Page -->
+        <section id="purchase-orders" class="page">
+            <div class="page-header">
+                <h2>Purchase Orders</h2>
+                <button class="btn btn-primary" onclick="openPurchaseOrderModal()">Add Purchase Order</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="purchase-orders-table-body">
+                        <tr>
+                            <td colspan="4" class="loading">Loading purchase orders...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Order Details Page -->
+        <section id="order-details" class="page">
+            <div class="page-header">
+                <h2>Order Details</h2>
+                <button class="btn btn-primary" onclick="openOrderDetailsModal()">Add Order Detail</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Quantity</th>
+                            <th>Cost</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-details-table-body">
+                        <tr>
+                            <td colspan="4" class="loading">Loading order details...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <!-- Customer Modal -->
+    <div id="customer-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('customer-modal')">&times;</span>
+            <h2 id="customer-modal-title">Add Customer</h2>
+            <form id="customer-form">
+                <input type="hidden" id="customer-id">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" id="customer-first-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Second Name</label>
+                    <input type="text" id="customer-second-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="customer-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone (comma-separated)</label>
+                    <input type="text" id="customer-phone" placeholder="123-456-7890, 987-654-3210" required>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" id="customer-address" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('customer-modal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('product-modal')">&times;</span>
+            <h2 id="product-modal-title">Add Product</h2>
+            <form id="product-form">
+                <input type="hidden" id="product-id">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" id="product-category" required>
+                </div>
+                <div class="form-group">
+                    <label>Stock</label>
+                    <input type="number" id="product-stock" required>
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" step="0.01" id="product-price" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('product-modal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Supplier Modal -->
+    <div id="supplier-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('supplier-modal')">&times;</span>
+            <h2 id="supplier-modal-title">Add Supplier</h2>
+            <form id="supplier-form">
+                <input type="hidden" id="supplier-id">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="supplier-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" id="supplier-address" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="supplier-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone (comma-separated)</label>
+                    <input type="text" id="supplier-phone" placeholder="123-456-7890, 987-654-3210" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('supplier-modal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Employee Modal -->
+    <div id="employee-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('employee-modal')">&times;</span>
+            <h2 id="employee-modal-title">Add Employee</h2>
+            <form id="employee-form">
+                <input type="hidden" id="employee-id">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="employee-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <input type="text" id="employee-role" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone (comma-separated)</label>
+                    <input type="text" id="employee-phone" placeholder="123-456-7890, 987-654-3210" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('employee-modal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Invoice Modal -->
+    <div id="invoice-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('invoice-modal')">&times;</span>
+            <h2 id="invoice-modal-title">Add Invoice</h2>
+            <form id="invoice-form">
+                <input type="hidden" id="invoice-id">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="invoice-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" step="0.01" id="invoice-amount" required>
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select id="invoice-payment-method" required>
+                        <option value="">Select Payment Method</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Debit Card">Debit Card</option>
+                        <option value="Online Payment">Online Payment</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('invoice-modal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Purchase Order Modal -->
+    <div id="purchase-order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('purchase-order-modal')">&times;</span>
+            <h2 id="purchase-order-modal-title">Add Purchase Order</h2>
+            <form id="purchase-order-form">
+                <input type="hidden" id="purchase-order-id">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="purchase-order-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" step="0.01" id="purchase-order-amount" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('purchase-order-modal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="order-details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('order-details-modal')">&times;</span>
+            <h2 id="order-details-modal-title">Add Order Detail</h2>
+            <form id="order-details-form">
+                <input type="hidden" id="order-details-id">
+                <div class="form-group">
+                    <label>Order ID</label>
+                    <input type="text" id="order-details-order-id" required>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" id="order-details-quantity" required>
+                </div>
+                <div class="form-group">
+                    <label>Cost</label>
+                    <input type="number" step="0.01" id="order-details-cost" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('order-details-modal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
